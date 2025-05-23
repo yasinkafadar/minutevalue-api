@@ -15,22 +15,22 @@ export const getClubByName = [
       
       const club = await getClubData(name);
       
-      return res.status(200).json({
+      res.status(200).json({
         status: 'success',
         data: club
       });
     } catch (error) {
       if (error instanceof Error) {
-        return res.status(404).json({
+        res.status(404).json({
           status: 'error',
           message: error.message
         });
+      } else {
+        res.status(500).json({
+          status: 'error',
+          message: 'An unexpected error occurred'
+        });
       }
-      
-      return res.status(500).json({
-        status: 'error',
-        message: 'An unexpected error occurred'
-      });
     }
   }
 ]; 
